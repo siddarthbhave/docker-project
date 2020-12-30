@@ -11,6 +11,8 @@ services:
       - web-profiles:/var/www/html/profiles
       - web-themes:/var/www/html/themes
       - web-sites:/var/www/html/sites
+    networks:
+      - custom
 
   postgres:
     image: postgres:12.1
@@ -18,6 +20,8 @@ services:
       POSTGRES_PASSWORD: admin
     volumes:
       - web-data:/var/lib/postgresql/data
+    networks:
+      - custom
 
 volumes:
   web-data:
@@ -25,3 +29,7 @@ volumes:
   web-profiles:
   web-themes:
   web-sites:
+  
+networks:
+  custom:
+    driver: bridge
